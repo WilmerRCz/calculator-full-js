@@ -78,7 +78,7 @@ function resultOperation() {
 function createButton(textInButton) {
   const button = document.createElement("button");
   const textButton = document.createTextNode(textInButton);
-  button.setAttribute("class", "text-white font-bold col-span-1 uppercase rounded-lg px-2 py-4 bg-gradient-to-r from-blue-500 to-pink-500 hover:from-pink-500 hover:to-green-500")
+  button.setAttribute("class", "text-white font-semibold  col-span-1 uppercase rounded-lg px-2 py-4 bg-gradient-to-r from-blue-500 to-pink-500 md:hover:from-pink-500 md:hover:to-amber-500")
   button.appendChild(textButton);
   if (textInButton === '=') {
     button.setAttribute("onClick", `resultOperation()`);
