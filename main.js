@@ -1,9 +1,12 @@
-const app = document.getElementById("app");
 document.body.setAttribute("class", "bg-slate-900 ")
+const app = document.getElementById("app");
+//Creación de elementos HTML
 const input = document.createElement("input");
 const result = document.createElement("p")
 const grid = document.createElement("div");
 const container = document.createElement("div")
+
+//Asignación de atributos (Clases a los elementos antes creados)
 container.setAttribute("class", "absolute inset-0 flex justify-center items-center ")
 app.appendChild(container);
 
@@ -15,6 +18,7 @@ grid.appendChild(result)
 input.setAttribute("class", "col-span-4 rounded-lg border-2 text-pink-500 text-4xl bg-transparent border-transparent focus:border-pink-500 focus:outline-none ")
 grid.appendChild(input)
 
+//Creación de buttons
 const botones = [
   createButton("1"),
   createButton("2"),
@@ -34,51 +38,56 @@ const botones = [
   createButton("/"),
 ]
 
+//Función que agrega texto (Depende de funcion de validar texto)
+function addText(textButton) {
+  const lastPosition = input.value.length - 1
+  const lastChart = input.value.charAt(lastPosition)
 
-  function addText(textButton) {
-    const lastPosition = input.value.length - 1
-    const lastChart = input.value.charAt(lastPosition)
+  validationInputText(lastChart, textButton, lastPosition)
 
-    if (lastChart === '+' && lastChart === textButton) {
-      return input.value
-    }
-    else if (lastChart === '-' && lastChart === textButton) {
-      return input.value
-    }
-    else if (lastChart === '*' && lastChart === textButton) {
-      return input.value
-    }
-    else if (lastChart === '/' && lastChart === textButton) {
-      return input.value
-    } else if (lastChart === '+' || lastChart === '-' || lastChart === '*' || lastChart === '/') {
-      if (textButton !== '+' && textButton !== '-' && textButton !== '*' && textButton !== '/') {
-        return input.value += textButton;
-      }
-      deleteLastCharAtInInput(lastPosition)
+}
+//Funcioón que valida que no se coloquen signos juntos
+function validationInputText(lastChart, textButton, lastPosition) {
+  if (lastChart === '+' && lastChart === textButton) {
+    return input.value
+  }
+  else if (lastChart === '-' && lastChart === textButton) {
+    return input.value
+  }
+  else if (lastChart === '*' && lastChart === textButton) {
+    return input.value
+  }
+  else if (lastChart === '/' && lastChart === textButton) {
+    return input.value
+  } else if (lastChart === '+' || lastChart === '-' || lastChart === '*' || lastChart === '/') {
+    if (textButton !== '+' && textButton !== '-' && textButton !== '*' && textButton !== '/') {
       return input.value += textButton;
     }
-    else {
-      return input.value += textButton;
-    }
+    deleteLastCharAtInInput(lastPosition)
+    return input.value += textButton;
   }
-
-  function deleteLastCharAtInInput(lastPosition){
-    const cutString = input.value.slice(0, lastPosition)
-    input.value = cutString
-    
+  else {
+    return input.value += textButton;
   }
+}
+//Función que me elimina el último caracter del input
+function deleteLastCharAtInInput(lastPosition) {
+  const cutString = input.value.slice(0, lastPosition)
+  input.value = cutString
 
+}
+//Función que ejecuta lo que esta ingresado en el input como operación matemática
 function resultOperation() {
-  
+
   try {
     const operation = eval(input.value)
     result.innerText = operation
   } catch (error) {
     result.innerText = 'Syntax Error'
   }
-  
-}
 
+}
+//Función que me crea un boton con el texto que reciba de parametro
 function createButton(textInButton) {
   const button = document.createElement("button");
   const textButton = document.createTextNode(textInButton);
