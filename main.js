@@ -54,8 +54,7 @@ const botones = [
       if (textButton !== '+' && textButton !== '-' && textButton !== '*' && textButton !== '/') {
         return input.value += textButton;
       }
-      const cutString = input.value.slice(0, lastPosition)
-      input.value = cutString
+      deleteLastCharAtInInput(lastPosition)
       return input.value += textButton;
     }
     else {
@@ -63,6 +62,11 @@ const botones = [
     }
   }
 
+  function deleteLastCharAtInInput(lastPosition){
+    const cutString = input.value.slice(0, lastPosition)
+    input.value = cutString
+    
+  }
 
 function resultOperation() {
   
