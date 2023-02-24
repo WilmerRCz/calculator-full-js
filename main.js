@@ -16,6 +16,7 @@ container.appendChild(grid)
 result.setAttribute("class", "col-span-4 text-6xl text-end break-words text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500")
 grid.appendChild(result)
 input.setAttribute("class", "col-span-4 rounded-lg border-2 text-pink-500 text-4xl bg-transparent border-transparent focus:border-pink-500 focus:outline-none ")
+input.setAttribute("disabled", "true")
 grid.appendChild(input)
 
 //Creación de buttons
@@ -48,7 +49,7 @@ function addText(textButton) {
   validationInputText(lastChart, textButton, lastPosition)
 
 }
-//Funcioón que valida que no se coloquen signos juntos
+//Función que valida que no se coloquen signos juntos
 function validationInputText(lastChart, textButton, lastPosition) {
   if (lastChart === '+' && lastChart === textButton) {
     return input.value
